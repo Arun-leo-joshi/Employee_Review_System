@@ -1,0 +1,391 @@
+/* Reset default margin and padding */
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.alert {
+    text-align: center;
+    position: fixed;
+    top:0;
+    z-index: 1000;
+    background-color: #8700fe;
+    padding: .75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/*  navingation starts here */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+nav {
+    margin-top: 3px;
+    overflow: hidden;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #252526;
+    list-style-type: none;
+    margin:0 ;
+    padding: 8px;
+    overflow: hidden;
+}
+nav ul li{
+    margin-left: 20px;
+    margin-right: 20px; 
+    animation: moveLeftToRight 3s linear forwards; 
+    font-size: 25px; /* Adjust font size as needed */
+}
+@keyframes moveLeftToRight {
+    0% { transform: translateX(450%); }
+    100% { transform: translateX(0%); }
+  }
+
+nav ul li a {
+    text-decoration: none; 
+    color: #ccc;
+}
+
+nav ul li a:hover {
+    color: #3d2fd7; 
+}
+
+nav button{
+    justify-content: end;
+    font-weight: 600;
+    font-size: 15px;
+    padding:8px;
+    margin:2px;
+    color:#ccc;
+    border:1px solid #FFFFE0;
+    background-color: #252526;
+}
+nav button:hover{
+    color: white;
+    transform: translateY(2px);
+}
+
+.logo {
+    position: relative;
+    width: auto;
+    margin: auto;
+    padding :10px;
+    font-family: 'Arial Black', sans-serif; 
+    font-size: 30px; 
+    color: #232323; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    text-shadow: 2px 2px 4px rgba(1, 204, 222, 0.5); 
+    text-align: center; 
+    animation: moveLeftToRight 3s linear forwards;
+}
+
+
+
+
+/* styling add employee form */
+
+#employeeForm {
+    margin: auto;
+    margin-bottom:5px;
+    height: 60vh;
+    width: 45%;
+    background-color: #E5E4E280; 
+    padding: 10px;
+    border:1px solid rgba(9, 9, 57, 0.9);
+    box-shadow: 4px 4px 9px rgba(15, 15, 61, 0.9);
+    z-index: 10; /* Ensure the form appears above other content */
+    display: none; /* Initially hide the form */
+}
+#employeeForm:hover{
+    transform: translateY(-4px);
+}
+
+/* Style form fields and labels */
+#employeeForm label,select {
+    display: block;
+    margin-top: 1px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#employeeForm input, select {
+    width: calc(100% - 20px); 
+    padding: 7px;
+    margin-bottom: 5px;
+    border: 1px solid #333; 
+    border-radius: 5px;
+    box-sizing: border-box; 
+    color: #070000; 
+}
+
+/* Style the submit button */
+#employeeForm button[type="submit"] {
+    width: calc(100% - 20px); 
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #001f3f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+#employeeForm button[type="submit"]:hover {
+    background-color: #05407f;
+}
+
+
+/* Styling single employee's div */
+
+.employees {
+    /* background-image: url(''); */
+    background-color: #0197fc;
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+
+/* Style for each employee item */
+#employeeList {
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    width:25vw;
+    margin: 15px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #003049;
+    text-align: center;
+    position: relative; /* Position for the logo */
+    height: 45vh; 
+}
+#employeeList:hover{
+    transform: translateY(5px);
+    background-color: #047cfe;
+}
+
+.employee-Box{
+    position:relative;
+    display:flex;
+    /* margin: auto; */
+    height: 60%;
+    width: 100%;
+    border: 3px solid chartreuse;
+    border-radius: 40px;
+    background-color: #FDE6E6;
+}
+.employee-Box:hover{
+    background-color: #9595ee;
+    color:white;
+}
+
+.employee-logo {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content:end;
+    font-size: 90px;
+    width: 30%;
+    height: 100%;
+}
+.employee-details{
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: auto;
+    padding: auto;
+    width:70%;
+    overflow:auto;
+}
+.employee-name,.employee-email{
+    padding:5px;
+}
+
+.employee-buttons{
+    margin-top: auto;
+    margin-bottom: auto;
+    display:flex ;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+}
+
+.employee-buttons button{
+    font-size: 22px;
+    font-weight: bolder;
+    background-color: #ccc;
+    color:#1A1A2E;
+}
+.employee-buttons button:hover{
+    background-color: #9595ee;
+}
+
+.asignBtn{
+    margin: auto;
+    width: 95%;
+}
+.Btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+}
+.Btn button{
+    width: calc(50% - 8px)
+}
+
+
+
+/* CSS for review form container */
+#reviewFormContainer {
+    display: block;
+    position: fixed;
+    width:fit-content;
+    top: 50%;
+    right: 50%;
+    transform: translate(40%,-40%);
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border: 2px solid #047cfe;
+    border-radius: 8px;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.7); 
+    z-index: 999; /* Ensure the form appears above other content */
+}
+
+/* CSS for the form elements */
+#reviewForm {
+    text-align: center;
+    width: 250px;
+    height: 300px;
+}
+
+#reviewForm label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#reviewForm select, input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#reviewForm button {
+    margin-bottom: auto;
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Optional: Adjust styles for hover and focus states */
+#reviewForm button:hover,
+#reviewForm button:focus {
+    background-color: #0056b3; /* Darker blue on hover/focus */
+}
+
+
+
+
+@media screen and (max-width: 780px) {
+    /* Adjust styles for smaller screens here */
+    body{
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        font-size: auto;
+        margin: auto;
+        padding: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .alert {
+        text-align: center;
+        position: relative;
+        padding: auto;
+        border: 1px solid transparent;
+    }
+    
+    /*  navingation starts here */
+    nav{
+        display: flex;
+        flex-wrap: wrap;
+        
+        flex-direction: column;
+        position: relative;
+        margin: auto;
+        width: auto;
+        overflow: none;
+    }
+
+    nav ul{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: center;
+    }
+    nav ul li{
+        position: relative;
+        display: flex;
+        margin:auto;
+        /* font-size: 17px; */
+    }
+    nav button{
+        justify-content: end;
+        font-weight: 600;
+        font-size: 15px;
+        padding:8px;
+        margin:2px;
+        color:#ccc;
+        border:1px solid #FFFFE0;
+        background-color: #252526;
+    }
+    nav button:hover{
+        color: white;
+        transform: translateY(2px);
+    }
+    
+    .logo {
+        width: auto;
+        margin: auto;
+        padding :10px;
+        font-family: 'Arial Black', sans-serif; 
+        font-size: 30px; 
+        color: #090c43; 
+        text-transform: uppercase; 
+        letter-spacing: 2px; 
+        text-shadow: 2px 2px 4px rgba(1, 204, 222, 0.5); 
+        background-color: #d0dfee;
+        text-align: center; 
+        animation: moveLeftToRight 3s linear forwards;
+    }
+}
+
+
+
+

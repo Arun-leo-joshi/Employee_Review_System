@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-image: url('https://as2.ftcdn.net/v2/jpg/05/48/89/67/1000_F_548896707_n7YwQhDSpmOl8ibPa4OlbRGKgxxbrp9X.jpg')
+ ;background-size: cover;background-position: center;">
+ 
+ 
+ <% if (locals.success) { %>
+    <div class="alert alert-success" role="alert">
+        <%= success %>
+    </div>
+    <% } %>
+
+ <% if (locals.error) {%>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+        <% } %>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-5">
+                <form action="/admin/updateemployee/<%= employee.id %>" method="POST" class="p-4 mt-4 shadow rounded fw-semibold" style="background-color: #cceeff;">
+                    <div class="text-center mb-4">
+                        <h1 style="color: #176B87;">Update Employee</h1>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" value="<%= employee.name %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" name="email" id="email" value="<%= employee.email %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="IsAdmin" class="form-label">isAdmin</label>
+                        <select class="form-select" name="isAdmin" aria-label="Default select example">   
+                            <option value="true" name="role">Yes</option>
+                            <option value="false" name="No">No</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // script for displaying flash messages
+       document.addEventListener("DOMContentLoaded", function() {
+        var successMessage = document.querySelector('.alert.alert-success');
+        var errorMessage = document.querySelector('.alert.alert-danger');
+    
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.remove();
+                }, 2000);
+            }
+    
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.remove();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

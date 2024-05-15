@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+
+    <link rel="stylesheet" href="/stylesheets/signup.css">
+    <!-- using bootsrap's css here to render flash error messages-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <% if (locals.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+        <% } %>
+        
+    <%if(locals.error){%>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+        <% } %>
+
+    <div class="signup-container">
+        <h1 class="logo">ERS</h1>
+        <div class="signup-form">
+            <h2>Sign Up</h2>
+            <form method="post" action="/user/signup">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                
+                <select name="isAdmin" required >
+                    <option value="" disabled selected>isAdmin</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account,<a href="/user/signin">Sign in</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var successMessage = document.querySelector('.alert.alert-success');
+            var errorMessage = document.querySelector('.alert.alert-danger');
+    
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.remove();
+                }, 2000);
+            }
+    
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.remove();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

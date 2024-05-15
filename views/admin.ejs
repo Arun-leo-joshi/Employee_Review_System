@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Features</title>
+
+    <!-- including Material icon cdn link -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- include bootstrap's css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+ 
+</head>
+
+<body>
+
+    <% if (locals.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+        <% } %>
+
+    <% if (locals.error) {%>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Admin Name ~> <%=username %></a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><a href="#">Email ~> <%=userEmail %></a></li>&nbsp;&nbsp;&nbsp;
+                <li><button id="showFormButton">Add Employee</button></li>
+                <li><button type="submit" id="logout">Logout</button></li>
+            </ul>
+        </nav>
+    </header>        
+    <h1 class="logo">All Employees</h1>
+    
+    <!-- Add employee form -->
+    <form method="post" action="/user/signup" id="employeeForm" style="display:none;" >
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="Confirm password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        
+        <select name="isAdmin" required >
+            <option value="" disabled selected>isAdmin</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    
+
+    <!-- Section to render employees -->
+    <%if(employees){%>
+        <div class="employees">
+            <% employees.forEach(employee => { %>
+                <div id="employeeList">
+                    <div class="employee-Box">
+                        <div class="employee-logo">
+                            <i class="material-icons employee-logo" style="color: #090c43;">account_circle</i>
+                        </div>
+                        <div class="employee-details">
+                            <div class="employee-name">
+                                <%= employee.name %>
+                            </div>
+                            <div class="employee-email">
+                                <%= employee.email %>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="employee-buttons">
+                        <button class="asignBtn"  onclick="assignReview('<%= employee.id%>', '<%= employee.name%>')">Assign Review</button>
+                        <div class="Btn">
+                            <button class="editBtn" onclick="editEmployee('<%= employee.id %>')">Edit</button>
+                            <button class="delBtn" onclick="deleteEmployee('<%= employee.id %>')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <%}%>
+    
+
+    <!-- review form -->
+    <% if(locals.showForm) {%>
+    <div id="reviewFormContainer" style="display: '<%=showForm%>';">
+        <form id="reviewForm" method="post" action="/admin/assignreview/<%= user.id %>">
+            
+            <label for="feedbackby" id="feedbackby" name="feedbackby">Feedback By:</label>
+            <select id="feedbackby" name="feedbackby" value='<%= user.id %>' selected >
+                <option value="<%= user.id %>"><%= user.name %></option>
+            </select>
+
+            <label for="feedbackto">Feedback To:</label>
+            <select id="feedbackto" name="feedbackto">
+                <%employees.forEach(employee=>{%>
+
+                    <% if( user.id !== employee.id) { %>
+                        <option value="<%= employee.id %>"><%= employee.name %></option>
+                    <% } %>
+
+                <% }) %>
+            </select>
+                
+            <button type="submit">Assign</button>
+            <button type="button" onclick="hideform()">Cancel</button>
+        </form>
+    </div>
+    <% } %>
+
+<script>
+       // script for displaying flash messages
+       document.addEventListener("DOMContentLoaded", function() {
+        var successMessage = document.querySelector('.alert.alert-success');
+        var errorMessage = document.querySelector('.alert.alert-danger');
+    
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.remove();
+                }, 3000);
+            }
+    
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.remove();
+                }, 3000);
+            }
+        });
+        
+        //  script to show form
+        const showFormButton = document.getElementById('showFormButton');
+        const employeeForm = document.getElementById('employeeForm');
+        
+        // Add event listener to the button
+        showFormButton.addEventListener('click', () => {
+            // Toggle form visibility
+            if (employeeForm.style.display === 'none') {
+
+                employeeForm.style.display = 'block';
+                showFormButton.innerText="Hide Form";
+
+            }else {
+                employeeForm.style.display = 'none';
+                showFormButton.innerText="Add Employee";
+            }
+            });
+
+            // script for logout button to route it to logout controller
+            document.getElementById('logout').addEventListener('click',function(){
+                window.location.href = '/user/logout'; // Redirect to logout route
+            });
+            //  for edit employee button
+            function editEmployee(employeeId){
+                window.location.href = '/admin/editemployee' + employeeId;
+            };
+
+            function deleteEmployee(employeeId){
+                window.location.href = '/admin/deleteemployee' + employeeId;
+            };
+
+
+            //  function to assingning review and show up form with assign review button
+            function assignReview(employeeId, employeeName) {
+
+                // Set the value of the input element with the employee name
+
+                window.location.href='/admin/assignreview'+employeeId;
+                
+                // Toggle the display property of the review form container
+                // const reviewFormContainer = document.getElementById('reviewFormContainer');
+                // reviewFormContainer.style.display = reviewFormContainer.style.display ===  'none'?'block':'none';
+
+                
+            };
+            function hideform(){
+                const reviewFormContainer = document.getElementById('reviewFormContainer');
+                reviewFormContainer.style.display =  'none';
+            }
+
+            
+            
+</script>
+</body>
+</html>

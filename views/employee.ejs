@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Performance Review Feedbacks</title>
+
+    <!-- include bootstrap's css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/employee.css">
+</head>
+
+<body>
+
+<!-- flash messages -->
+    <% if (locals.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+        <% } %>
+
+    <% if (locals.error) {%>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+
+    <nav>
+        <ul>
+            <li><a href="#">Employee Name ~> <%= username %></a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><a href="#">Email ~> <%= userEmail %></a></li>&nbsp;&nbsp;&nbsp;
+            <li><button type="submit" id="logout">Logout</button></li>
+        </ul>
+    </nav>
+
+    <div class="feedbacksection">
+        <!-- 1st div -->
+        <div class="giveFeedback">
+            <h2>Pending Feedback Requests</h2>
+            <% if(assignedReviews.length>0) {%>
+                <form method="post" action="/employee/submitfeedback/<%= userEmail%> ">
+
+                    <label for="feedbackTo" > FeedBack to:</label>
+                    <select name="feedbackTo" required>
+                        <% assignedReviews.forEach(employee=>{ %>
+                        <option value="<%= employee.id%>"><%= employee.name%></option>
+                        <% }) %>
+                    </select>
+                    
+                    <label for="feedbackcomment"> FeedBack Comment:</label>
+                    <textarea name="feedbackText" required></textarea>
+                    <button type="submit">Submit FeedBack</button>
+                </form>
+            <% }else{ %>
+                <h3>No Pending Requests </h3>
+                <% } %>
+        </div>
+
+        <div class="feedbackreceived">
+            
+            <h2>FeedBack Received</h2>
+            
+            <% if(feedbacks.length>0) {%>
+                <% feedbacks.forEach(feedback=>{ %>
+
+                    <div class="feedbacks">
+                        <label for="feedbackBy">FeedBack By</label>
+                        <h5><%= feedback.feedbackBy.name%></h5>
+                        <textarea readonly><%= feedback.feedbackText%></textarea>
+                    </div>
+                
+                <% }) %>
+            <% } %>
+        </div>
+            
+    </div>
+
+    
+    
+
+    <script>
+        // script for displaying flash messages
+        document.addEventListener("DOMContentLoaded", function() {
+         var successMessage = document.querySelector('.alert.alert-success');
+         var errorMessage = document.querySelector('.alert.alert-danger');
+     
+             if (successMessage) {
+                 setTimeout(function() {
+                     successMessage.remove();
+                 }, 3000);
+             }
+     
+             if (errorMessage) {
+                 setTimeout(function() {
+                     errorMessage.remove();
+                 }, 3000);
+             }
+         });
+         
+
+        // script for logout button to route it to logout controller
+        document.getElementById('logout').addEventListener('click',function(){
+            window.location.href = '/user/logout'; 
+        });
+    </script> 
+</body>
+</html>

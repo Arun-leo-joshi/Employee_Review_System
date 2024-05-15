@@ -1,0 +1,227 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,rgb(149, 215, 237), #84d2c8 );
+    display: flex;
+    flex-direction: column;
+}
+
+.alert {
+    text-align: center;
+    position: fixed;
+    top:0;
+    z-index: 1000;
+    background-color: #04fdcbf1;
+    color: #000d0d;
+    padding: .75rem 1.25rem;
+    margin-top: 80px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+nav {
+    margin-top: 5px;
+    overflow: hidden;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #252526;
+    list-style-type: none;
+    margin:0 ;
+    padding: 8px;
+    overflow: hidden;
+}
+nav ul li{
+    margin-left: 20px;
+    margin-right: 20px; 
+    animation: moveLeftToRight 3s linear forwards; 
+    font-size: 25px; /* Adjust font size as needed */
+}
+@keyframes moveLeftToRight {
+    0% { transform: translateX(450%); }
+    100% { transform: translateX(0%); }
+}
+
+nav ul li a {
+    text-decoration: none; 
+    color: #ccc;
+}
+nav ul li a:hover {
+    text-decoration: none;
+    color: #035bff; 
+}
+nav button{
+    /* width: 180px; */
+    justify-content: end;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px;
+    padding-left:20px;
+    padding-right: 20px;
+    margin:2px;
+    color:#ccc;
+    border:1px solid #FFFFE0;
+    background-color: #252526;
+}
+nav button:hover{
+    color: white;
+    transform: translateY(2px);
+}
+
+
+.feedbacksection{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/*  styling left side of page to give feedback */
+
+.giveFeedback {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 80vh auto;
+    padding: 40px;
+    margin:20px;
+    margin-left: 30px;
+    background-color: rgb(75, 189, 227);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 4px solid #ddd; /* Optional: adds a border to separate the left and right halves */
+    box-sizing: border-box;
+}
+.giveFeedback:hover{
+transform: translateY(-7px);
+background-color: rgb(14, 181, 237);
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    background-image: linear-gradient(to right, #01fbff, #fdf003);
+    background-size: 100% ;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.giveFeedback  select, textarea, button{
+    margin-bottom: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #000d0d;
+    border-radius: 5px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+select {
+
+    background-color: #caef9a;
+    
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+    font-size: 16px;
+    padding: 12px; 
+}
+
+select option {
+    padding: 12px; 
+    font-size: 16px; 
+}
+
+select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #056e08d6;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid #035902;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #96ab49;
+}
+
+
+
+/* Styling right side of page feedback received */
+
+.feedbackreceived{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1%;
+    border: 3px solid #FFFFFF;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.feedbacks{
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #02eaff;
+    background-color: #418b8d;
+    color: #351515;
+    padding:20px;
+    width: 50vw;
+    margin:10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.feedbacks:hover{
+    transform: translateY(-6px);
+    border:4px solid #01fbff;
+    background-color: #ccc;
+}
+
+.feedbacks textarea {
+
+    background-color: #ddd;
+    color: #9b479b;
+    font-family: "Times New Roman", Times, serif;
+    font-style: oblique;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    font-size: 20px;
+    padding: 12px;
+    border: 3px solid #fbff04f9;
+    box-shadow: 0px 2px 4px rgba(200, 0, 255, 0.5);
+}
